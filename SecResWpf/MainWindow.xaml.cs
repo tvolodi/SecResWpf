@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SecResWpf.Cef;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,11 +24,18 @@ namespace SecResWpf
         public MainWindow()
         {
             InitializeComponent();
+
+            this.Closed += new EventHandler(MainWindow_Closed);
         }
 
-        private void YStockPricesBtn_Click(object sender, RoutedEventArgs e)
+        private void MainWindow_Closed(object sender, EventArgs e)
         {
+            CefTools.Down();
+        }
 
+        private async void YStockPricesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            await LoadYahooStockPrices.LoadAsync();
         }
     }
 }
