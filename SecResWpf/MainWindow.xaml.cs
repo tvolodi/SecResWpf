@@ -35,7 +35,20 @@ namespace SecResWpf
 
         private async void YStockPricesBtn_Click(object sender, RoutedEventArgs e)
         {
-            await LoadYahooStockPrices.LoadAsync();
+            // await LoadYahooStockPrices.LoadAsync();
+
+            List<string> symbols = new List<string>();
+
+            symbols.Add("F");
+            symbols.Add("AAPL");
+            symbols.Add("MSFT");
+            symbols.Add("IBM");
+            symbols.Add("C");
+            symbols.Add("GOOG");
+            symbols.Add("AMZN");
+            YSymbolBatchProcessor ySymbolBatchProcessor = new YSymbolBatchProcessor(symbols);
+            await ySymbolBatchProcessor.ProcessSymbolsBatch(symbols);
+
         }
     }
 }
